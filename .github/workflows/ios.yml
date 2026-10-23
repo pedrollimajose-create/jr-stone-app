@@ -41,7 +41,10 @@ jobs:
         run: |
           KEY="$RUNNER_TEMP/AuthKey_$ASC_KEY_ID.p8"
           # the key can be pasted as-is (ASC_KEY_P8) or base64-encoded (ASC_KEY_P8_BASE64)
-          if [ -n "$ASC_KEY_P8" ]; then printf '%s\n' "$ASC_KEY_P8" > "$KEY"; else echo "$ASC_KEY_P8_BASE64" | base64 -d > "$KEY"; fi
+          RAW="${ASC_KEY_P8:-$ASC_KEY_P8_BASE64}"
+          if printf '%s' "$RAW" | grep -q "BEGIN PRIVATE KEY"; then printf '%s\n' "$RAW" > "$KEY"
+          else printf '%s' "$RAW" | tr -d ' \r\n' | base64 -D > "$KEY" 2>/dev/null || true; fi
+          grep -q "BEGIN PRIVATE KEY" "$KEY" || { echo "::error::The App Store Connect key secret doesn't contain a private key. Paste the whole .p8 file text (from -----BEGIN PRIVATE KEY----- to -----END PRIVATE KEY-----) into the ASC_KEY_P8 secret."; exit 1; }
           AUTH="-allowProvisioningUpdates -authenticationKeyPath $KEY -authenticationKeyID $ASC_KEY_ID -authenticationKeyIssuerID $ASC_ISSUER_ID"
           sed "s/TEAM_ID_PLACEHOLDER/$APPLE_TEAM_ID/" ci/ExportOptions.plist > "$RUNNER_TEMP/ExportOptions.plist"
           xcodebuild -project App.xcodeproj -scheme App -configuration Release \
