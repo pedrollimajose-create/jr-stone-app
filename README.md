@@ -40,7 +40,7 @@ Android (Google Play Console, $25 one-off):
 iOS (Apple Developer Program, $99/year):
 - `APPLE_TEAM_ID`: from developer.apple.com → Membership
 - `ASC_KEY_ID`, `ASC_ISSUER_ID`, `ASC_KEY_P8_BASE64`: an App Store Connect API key
-  (App Store Connect → Users and Access → Integrations, role "App Manager")
+  (App Store Connect → Users and Access → Integrations, role "Admin" so the build can create signing certificates)
 - Create the app record `com.jrstone.workflow` in App Store Connect first.
 
 ## Releasing to staff only
