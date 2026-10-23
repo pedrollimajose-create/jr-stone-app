@@ -5,7 +5,7 @@
   "description": "JR Stone WorkFlow staff app for iOS and Android (Capacitor shell around jr-stone-job-board.netlify.app)",
   "scripts": {
     "sync": "cap sync",
-    "icons": "capacitor-assets generate --iconBackgroundColor '#1f2a30' --splashBackgroundColor '#1f2a30'",
+    "icons": "capacitor-assets generate --iconBackgroundColor '#111214' --splashBackgroundColor '#111214'",
     "open:android": "cap open android",
     "open:ios": "cap open ios"
   },
