@@ -5,6 +5,9 @@ on:
     branches: [main]
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     env:
@@ -31,6 +34,18 @@ jobs:
         with:
           name: jr-stone-workflow-test-apk
           path: android/app/build/outputs/apk/debug/app-debug.apk
+
+      # Fixed download link for testers:
+      # https://github.com/<owner>/<repo>/releases/download/android-test/JR-Stone-WorkFlow.apk
+      - name: Publish test APK to the android-test release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cp android/app/build/outputs/apk/debug/app-debug.apk JR-Stone-WorkFlow.apk
+          gh release view android-test >/dev/null 2>&1 || \
+            gh release create android-test --prerelease --title "Android test build" \
+              --notes "Latest Android test build of JR Stone WorkFlow. Open this page on an Android phone, tap JR-Stone-WorkFlow.apk and install it."
+          gh release upload android-test JR-Stone-WorkFlow.apk --clobber
 
       # Signed Play Store bundle, only once the signing secrets are added to the repo.
       - name: Build signed release bundle
