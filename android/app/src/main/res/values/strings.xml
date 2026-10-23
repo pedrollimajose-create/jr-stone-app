@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">JR Stone WorkFlow</string>
+    <string name="title_activity_main">JR Stone WorkFlow</string>
+    <string name="package_name">com.jrstone.workflow</string>
+    <string name="custom_url_scheme">com.jrstone.workflow</string>
+</resources>

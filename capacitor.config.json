@@ -1,0 +1,23 @@
+{
+  "appId": "com.jrstone.workflow",
+  "appName": "JR Stone WorkFlow",
+  "webDir": "www",
+  "server": {
+    "url": "https://jr-stone-job-board.netlify.app",
+    "cleartext": false,
+    "errorPath": "offline.html"
+  },
+  "android": {
+    "allowMixedContent": false
+  },
+  "ios": {
+    "contentInset": "automatic"
+  },
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 1200,
+      "backgroundColor": "#1f2a30",
+      "showSpinner": false
+    }
+  }
+}
