@@ -26,6 +26,8 @@
 	<string>JR Stone WorkFlow uses your location when you clock in and out, so the office knows which site you are at.</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>While you are clocked in, JR Stone WorkFlow shares your location with the office, even when the app is in the background. Tracking stops when you clock out.</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Use Face ID to sign in to JR Stone WorkFlow instead of typing your password.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>JR Stone WorkFlow uses the camera to take photos of finished jobs.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
