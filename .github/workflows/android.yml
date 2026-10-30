@@ -12,6 +12,7 @@ jobs:
   build:
     env:
       HAS_ANDROID_SIGNING: ${{ secrets.ANDROID_KEYSTORE_BASE64 != '' }}
+      VERSION_CODE: ${{ github.run_number }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
