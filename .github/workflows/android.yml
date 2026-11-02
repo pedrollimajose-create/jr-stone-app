@@ -69,3 +69,15 @@ jobs:
         with:
           name: jr-stone-workflow-play-bundle
           path: android/app/build/outputs/bundle/release/app-release.aab
+      # Fixed download link for the Play upload file:
+      # https://github.com/<owner>/<repo>/releases/download/play-upload/JR-Stone-WorkFlow-play.aab
+      - name: Publish Play bundle to the play-upload release
+        if: env.HAS_ANDROID_SIGNING == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cp android/app/build/outputs/bundle/release/app-release.aab JR-Stone-WorkFlow-play.aab
+          gh release view play-upload >/dev/null 2>&1 || \
+            gh release create play-upload --prerelease --title "Google Play upload file" \
+              --notes "Latest signed bundle (.aab) of JR Stone WorkFlow for uploading in Google Play Console. Not installable on a phone directly."
+          gh release upload play-upload JR-Stone-WorkFlow-play.aab --clobber
